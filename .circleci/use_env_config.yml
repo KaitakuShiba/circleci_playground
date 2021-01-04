@@ -1,0 +1,17 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:2.7.2 # プライマリイメージの環境変数は利用できる。マスクしたい環境変数は管理画面から設定可能
+        environment:
+          RAILS_ENV: test
+      - image: circleci/mysql:5.7-ram # サービスイメージの環境変数は利用できない
+        environment:
+          MYSQL_DATABASE: hogehoge-db_test
+          MYSQL_USER: root
+          MYSQL_ROOT_PASSWORD: hogehoge-db
+    steps:
+      - checkout
+      - run:
+          name: Print Ruby Version
+          command: ruby --version && echo "RAILS_ENV is '${RAILS_ENV}'"

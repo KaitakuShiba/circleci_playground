@@ -1,0 +1,10 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:2.7.2
+    steps:
+      - checkout
+      - run:
+          name: Print Ruby Version
+          command: ruby --version
